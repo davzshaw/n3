@@ -3,114 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WannaCry</title>
-    <style>
-        /* Estilos generales */
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-
-        /* Contenedor para los botones */
-        .button-container {
-            display: flex;
-            flex-direction: column; /* Cambiado a columna */
-            gap: 10px;
-            align-items: center;
-        }
-
-        /* Estilos de los botones */
-        .button-container button {
-            font-size: 1em;
-            padding: 15px 20px;
-            width: 100%; /* Botones ocupan todo el ancho disponible */
-            max-width: 200px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: white;
-            transition: background-color 0.3s;
-        }
-
-        /* Cambiar color al pasar el mouse */
-        .button-container button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Adaptabilidad para pantallas pequeñas */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.2em;
-            }
-
-            .button-container button {
-                padding: 10px;
-                font-size: 0.9em;
-            }
-        }
-    </style>
-    <script>
-        const apiUrl = "https://n2.onrender.com/api/insert/cry";
-
-        function sendPost(data) {
-            fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ data: data })
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert("Request sent successfully!");
-                } else {
-                    alert("Error in request: " + response.statusText);
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("An error occurred while sending the request.");
-            });
-        }
-
-        function sendBabyCry1() {
-            sendPost("sound1");
-        }
-
-        function sendBabyCry2() {
-            sendPost("sound2");
-        }
-
-        function sendBabyCry3() {
-            sendPost("sound3");
-        }
-
-        function sendNoSound1() {
-            sendPost("nosound1");
-        }
-    </script>
+    <title>Ajustes</title>
 </head>
 <body>
+    <h1>Ajustes</h1>
     <div>
-        <h1>WannaCry</h1>
-        <div class="button-container">
-            <button onclick="sendBabyCry1()">Baby Cry 1</button>
-            <button onclick="sendBabyCry2()">Baby Cry 2</button>
-            <button onclick="sendBabyCry3()">Baby Cry 3</button>
-            <button onclick="sendNoSound1()">No Sound 1</button>
-        </div>
+        <p>Configura los sonidos del bebé:</p>
+        <!-- Botones para enviar datos al endpoint -->
+        <form action="/insert/setting" method="post">
+            <input type="hidden" name="data" value="sound1">
+            <button type="submit">Baby Cry 1</button>
+        </form>
+        <form action="/insert/setting" method="post">
+            <input type="hidden" name="data" value="sound2">
+            <button type="submit">Baby Cry 2</button>
+        </form>
+        <form action="/insert/setting" method="post">
+            <input type="hidden" name="data" value="sound3">
+            <button type="submit">Baby Cry 3</button>
+        </form>
+        <form action="/insert/setting" method="post">
+            <input type="hidden" name="data" value="nosound1">
+            <button type="submit">No Sound 1</button>
+        </form>
     </div>
 </body>
 </html>
