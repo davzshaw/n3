@@ -45,7 +45,7 @@ def getSetting():
 def insertDatetime():
     try:
         data = request.json.get('data')
-        datetimeString = datetime.fromtimestamp(data).strftime('%Y-%m-%d %H:%M:%S')
+        datetimeString = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         writeFiles(datetimeString, "datetime.txt")
         return jsonify({"response": "Datetime inserted successfully"}), 200
     except Exception as e:
