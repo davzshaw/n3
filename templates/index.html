@@ -15,7 +15,7 @@
                 const tempData = await tempResponse.json();
                 document.getElementById('temperature').innerText = tempData.temperature !== undefined ? tempData.temperature + " °C" : "Error al obtener datos";
 
-                const cryResponse = await fetch('/get/dontcry');
+                const cryResponse = await fetch('/get/cry');
                 const cryData = await cryResponse.json();
                 document.getElementById('cry').innerText = cryData.message || "Error al obtener datos";
             } catch (error) {
