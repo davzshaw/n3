@@ -60,9 +60,9 @@ def isCrying(rms, f0, pitch, activeDurations):
   f0Mean, _ = f0
   _, pitchStd = pitch
   
-  rmsThreshold = 0.08 # Original 0.03 / 0.05
+  rmsThreshold = 0.01 # Original 0.03 / 0.05
   f0ThresholdRange = (100, 500)
-  pitchStdThreshold = 15 # Original: 10
+  pitchStdThreshold = 7.5 # Original: 10
   activeDurationThreshold = 0.5
   
   isRmsHigh = rmsMean > rmsThreshold
