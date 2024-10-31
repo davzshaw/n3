@@ -48,11 +48,11 @@ def processAudioFiles(audioPaths):
   with ProcessPoolExecutor() as executor:
     rmsResults = list(executor.map(calculateRms, audioPaths))[0]
     f0Results = list(executor.map(calculateFundamentalFrequency, audioPaths))[0]
-    f0Results = list(map(lambda x: x, f0Results))#0.4641498494259757
+    f0Results = list(map(lambda x: x*0.4641498494259757, f0Results))
     pitchResults = list(executor.map(calculatePitchModulation, audioPaths))[0]
-    pitchResults = list(map(lambda x: x, pitchResults))#0.1406827751568227
+    pitchResults = list(map(lambda x: x*0.1406827751568227, pitchResults))
     activeDurations = list(executor.map(calculateActiveSegmentDurations, audioPaths))[0]
-    activeDurations = list(map(lambda x: x, activeDurations))#0.8004364429896344
+    activeDurations = list(map(lambda x: x*0.8004364429896344, activeDurations))
   return rmsResults, f0Results, pitchResults, activeDurations
 
 def isCrying(rms, f0, pitch, activeDurations):
