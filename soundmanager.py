@@ -70,12 +70,13 @@ def isCrying(rms, f0, pitch, activeDurations):
   isPitchModulationHigh = pitchStd > pitchStdThreshold
   totalActiveDuration = sum(activeDurations)
   isActiveDurationLong = totalActiveDuration > activeDurationThreshold
-
-  print(f"isRmsHigh: {isRmsHigh}")
-  print(f"isF0InRange: {isF0InRange}")
-  print(f"isPitchModulationHigh: {isPitchModulationHigh}")
-  print(f"isActiveDurationLong: {isActiveDurationLong}")
-  if isRmsHigh and isF0InRange and isPitchModulationHigh and isActiveDurationLong:
-    return True
-  else:
-    return False
+  falseCounter = 0
+  trueCounter = 0
+  
+  for i in [isRmsHigh, isF0InRange, isPitchModulationHigh, isActiveDurationLong]:
+    if i:
+      trueCounter += 1
+    else:
+      falseCounter += 1
+      
+  return trueCounter > falseCounter
