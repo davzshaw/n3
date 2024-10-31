@@ -14,7 +14,7 @@ def getDatetime():
         datetime = readFiles("datetime.txt")
         return jsonify({"response": datetime}), 200
     except Exception as e:
-        return jsonify({"error": "Error trying to get datetime"}), 500
+        return jsonify({f"error": "Error trying to get datetime - {e}"}), 500
 
 @app.route('/get/temperature', methods=['GET'])
 def getTemperature():
@@ -22,7 +22,7 @@ def getTemperature():
         temperature = readFiles("temp.txt")
         return jsonify({"response": temperature}), 200
     except Exception as e:
-        return jsonify({"error": "Error trying to get temperature"}), 500
+        return jsonify({f"error": "Error trying to get temperature - {e}"}), 500
 
 @app.route('/get/cry', methods=['GET'])
 def getCry():
@@ -30,7 +30,7 @@ def getCry():
         sound = readFiles("sound.txt")
         return jsonify({"response": sound}), 200
     except Exception as e:
-        return jsonify({"error": "Error trying to get sound"}), 500
+        return jsonify({f"error": "Error trying to get sound - {e}"}), 500
     
 @app.route('/get/setting', methods=['GET'])
 def getSetting():
@@ -38,7 +38,7 @@ def getSetting():
         settings = readFiles("setting.txt")
         return jsonify({"response": settings}), 200
     except Exception as e:
-        return jsonify({"error": "Error trying to get settings"}), 500
+        return jsonify({f"error": "Error trying to get settings - {e}"}), 500
     
 @app.route('/insert/datetime', methods=['POST'])
 def insertDatetime():
@@ -47,7 +47,7 @@ def insertDatetime():
         writeFiles(data, "datetime.txt")
         return jsonify({"response": "Datetime inserted successfully"}), 200
     except Exception as e:
-        return jsonify({"error": "Error trying to insert datetime"}), 500
+        return jsonify({f"error": "Error trying to insert datetime - {e}"}), 500
 
 @app.route('/insert/temperature', methods=['POST'])
 def insertTemperature():
@@ -56,7 +56,7 @@ def insertTemperature():
         writeFiles(data, "temp.txt")
         return jsonify({"response": "Temperature inserted successfully"}), 200
     except Exception as e:
-        return jsonify({"error": "Error trying to insert temperature"}), 500
+        return jsonify({f"error": "Error trying to insert temperature - {e}"}), 500
 
 @app.route('/insert/cry', methods=['POST'])
 def insertCry():
@@ -65,7 +65,7 @@ def insertCry():
         writeFiles(data, "sound.txt")
         return jsonify({"response": "Cry inserted successfully"}), 200
     except Exception as e:
-        return jsonify({"error": "Error trying to insert cry"}), 500
+        return jsonify({f"error": "Error trying to insert cry - {e}"}), 500
 
 @app.route('/insert/setting', methods=['POST'])
 def insertSetting():
@@ -74,7 +74,7 @@ def insertSetting():
         writeFiles(data, "setting.txt")
         return jsonify({"response": "Setting inserted successfully"}), 200
     except Exception as e:
-        return jsonify({"error": "Error trying to insert setting"}), 500
+        return jsonify({f"error": "Error trying to insert setting - {e}"}), 500
     
 @app.route('/clear', methods=['POST'])
 def clear():
@@ -82,7 +82,7 @@ def clear():
         deleteFiles()
         return jsonify({"response": "Files deleted successfully"}), 200
     except Exception as e:
-        return jsonify({"error": "Error trying to delete files"}), 500
+        return jsonify({f"error": "Error trying to delete files - {e}"}), 500
 
 
 # Pages
