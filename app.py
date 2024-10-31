@@ -56,8 +56,7 @@ def insertTemperature():
         writeFiles(data, "temp.txt")
         return jsonify({"response": "Temperature inserted successfully"}), 200
     except Exception as e:
-        print(e)
-        return jsonify({f"error": "Error trying to insert temperature - {e}"}), 500
+        return jsonify({f"error": e}), 500
 
 @app.route('/insert/cry', methods=['POST'])
 def insertCry():
