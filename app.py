@@ -91,7 +91,14 @@ def clear():
 # Pages
 @app.route('/')
 def index():
-    return render_template('index.html')
+    try:
+        datetime_data = readFiles("datetime.txt")
+        temp_data = readFiles("temp.txt")
+        cry_data = readFiles("sound.txt")
+
+        return render_template('index.html', datetime=datetime_data, temperature=temp_data, cry=cry_data)
+    except Exception as e:
+        return f"Error al cargar la página: {e}"
 
 @app.route('/setting')
 def setting():

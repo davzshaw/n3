@@ -3,36 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicativo Flask con APIs Externas</title>
-    <script>
-        async function fetchData() {
-            try {
-                const datetimeResponse = await fetch('/get/datetime');
-                const datetimeData = await datetimeResponse.json();
-                document.getElementById('datetime').innerText = datetimeData.last_update || "Error al obtener datos";
-
-                const tempResponse = await fetch('/get/temperature');
-                const tempData = await tempResponse.json();
-                document.getElementById('temperature').innerText = tempData.temperature !== undefined ? tempData.temperature + " °C" : "Error al obtener datos";
-
-                const cryResponse = await fetch('/get/cry');
-                const cryData = await cryResponse.json();
-                document.getElementById('cry').innerText = cryData.message || "Error al obtener datos";
-            } catch (error) {
-                console.error("Error al obtener datos:", error);
-            }
+    <title>Aplicativo Flask con Datos de APIs Externas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
         }
 
-        function reloadPage() {
-            fetchData();
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
         }
-    </script>
+
+        p {
+            font-size: 1.2em;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 15px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body onload="fetchData()">
+<body>
     <h1>Aplicativo Flask con Datos de APIs Externas</h1>
-    <p><strong>Last Update:</strong> <span id="datetime"></span></p>
-    <p><strong>Temperature:</strong> <span id="temperature"></span></p>
-    <p><strong>Crying:</strong> <span id="cry"></span></p>
-    <button onclick="reloadPage()" style="font-size: 20px; padding: 15px;">Actualizar Datos</button>
+    <p><strong>Last Update:</strong> {{ datetime }}</p>
+    <p><strong>Temperature:</strong> {{ temperature }} °C</p>
+    <p><strong>Crying:</strong> {{ cry }}</p>
+    <form method="get">
+        <button type="submit">Actualizar Datos</button>
+    </form>
 </body>
 </html>
