@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, render_template, request
 import requests
+from datetime import datetime
 from utils import *
 
 app = Flask(__name__)
@@ -44,7 +45,8 @@ def getSetting():
 def insertDatetime():
     try:
         data = request.json.get('data')
-        writeFiles(data, "datetime.txt")
+        datetimeString = datetime.fromtimestamp(data).strftime('%Y-%m-%d %H:%M:%S')
+        writeFiles(datetimeString, "datetime.txt")
         return jsonify({"response": "Datetime inserted successfully"}), 200
     except Exception as e:
         return jsonify({f"error": "Error trying to insert datetime - {e}"}), 500
