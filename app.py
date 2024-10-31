@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 import requests
 from utils import *
 
@@ -43,7 +43,7 @@ def getSetting():
 @app.route('/insert/datetime', methods=['POST'])
 def insertDatetime():
     try:
-        data = requests.json.get('data')
+        data = request.json.get('data')
         writeFiles(data, "datetime.txt")
         return jsonify({"response": "Datetime inserted successfully"}), 200
     except Exception as e:
@@ -52,16 +52,17 @@ def insertDatetime():
 @app.route('/insert/temperature', methods=['POST'])
 def insertTemperature():
     try:
-        data = requests.json.get('data')
+        data = request.json.get('data')
         writeFiles(data, "temp.txt")
         return jsonify({"response": "Temperature inserted successfully"}), 200
     except Exception as e:
-        return jsonify({f"error": e}), 500
+        return jsonify({f"error": "Error trying to get temperature - {e}"}), 500
+
 
 @app.route('/insert/cry', methods=['POST'])
 def insertCry():
     try:
-        data = requests.json.get('data')
+        data = request.json.get('data')
         writeFiles(data, "sound.txt")
         return jsonify({"response": "Cry inserted successfully"}), 200
     except Exception as e:
@@ -70,7 +71,7 @@ def insertCry():
 @app.route('/insert/setting', methods=['POST'])
 def insertSetting():
     try:
-        data = requests.json.get('data')
+        data = request.json.get('data')
         writeFiles(data, "setting.txt")
         return jsonify({"response": "Setting inserted successfully"}), 200
     except Exception as e:
