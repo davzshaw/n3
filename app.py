@@ -98,7 +98,8 @@ def predict():
             writeFiles("yes", "cry.txt")
         else:
             writeFiles("no", "cry.txt")
-        return jsonify({"response": "Baby cry proc."}), 200
+        toReturn = {"response": cry}
+        return jsonify(toReturn), 200
     except Exception as e:
         return jsonify({f"error": "Error trying to delete files - {e}"}), 500
 
