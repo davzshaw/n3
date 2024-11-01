@@ -147,6 +147,9 @@ def index():
         
         if cry_data.strip() == "deleted":
             cry_data = "unknown"
+            
+        if temp_data > "28" or temp_data < "15":
+            sendEmail(True, temp_data)
 
         return render_template('index.html', datetime=datetime_data, temperature=temp_data, cry=cry_data)
     except Exception as e:
