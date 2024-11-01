@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, render_template, request
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 from soundmanager import isCrying, processAudioFiles
 from utils import *
 
@@ -46,7 +46,7 @@ def insertDatetime():
         if not request.json:
             return jsonify({"error": "Invalid JSON format"}), 400
         
-        datetime_string = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        datetime_string = (datetime.now()-timedelta(hours=5)).strftime("%Y-%m-%d %H:%M:%S")
         writeFiles(datetime_string, "datetime.txt")
         return jsonify({"response": "Datetime inserted successfully"}), 200
     except Exception as e:
