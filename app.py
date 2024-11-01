@@ -122,10 +122,10 @@ def sendAlert():
         temp = readFiles("temp.txt")
         crybool = cry == "yes"
         
-        intervalsA = (-999, 15)
-        intervalsB = (28, 999)
+        tempCheck = temp <= 10 or temp >= 35
+        cryCheck = crybool
         
-        if -999 <= int(temp) <= 15 or 28 <= int(temp) <= 999:
+        if cryCheck and tempCheck:
             sendEmail(crybool, temp)
         return jsonify({"response": "Mail sent successfully"}), 200
     except Exception as e:
