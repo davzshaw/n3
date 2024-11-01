@@ -7,7 +7,6 @@ app = Flask(__name__)
 
 # Controllers
 
-mainUrl = "https://n2.onrender.com/api"
 
 @app.route('/get/datetime', methods=['GET'])
 def getDatetime():
