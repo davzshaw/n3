@@ -102,6 +102,18 @@ def predict():
         return jsonify(toReturn), 200
     except Exception as e:
         return e
+    
+@app.route('/send', methods=['POST'])
+def sendAlert():
+    try:
+        cry = readFiles("cry.txt")
+        temp = readFiles("temp.txt")
+        crybool = cry == "yes"
+
+        sendEmail(crybool, temp)
+        return jsonify({"response": "Mail sent successfully"}), 200
+    except Exception as e:
+        return jsonify({"error": f"Error trying to send alert - {e}"}), 500
 
 
 # Pages
