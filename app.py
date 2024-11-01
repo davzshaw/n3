@@ -93,7 +93,16 @@ def index():
     try:
         datetime_data = readFiles("datetime.txt")
         temp_data = readFiles("temp.txt")
-        cry_data = readFiles("sound.txt")
+        cry_data = readFiles("cry.txt")
+        
+        if datetime_data.strip() == "deleted":
+            datetime_data = "1/1/1 00:00:00"
+            
+        if temp_data.strip() == "deleted °C":
+            temp_data = "0"
+            
+        if cry_data.strip() == "deleted":
+            cry_data = "unknow"
 
         return render_template('index.html', datetime=datetime_data, temperature=temp_data, cry=cry_data)
     except Exception as e:
