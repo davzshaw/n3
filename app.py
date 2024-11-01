@@ -103,7 +103,7 @@ def predict():
             return jsonify({"error": "Data not provided"}), 400
         
         data = request.json.get('data')
-        sounds = [data]
+        sounds = ["storage/"+data]
         rms, frequency, pitch, duration = processAudioFiles(sounds)
         cry = isCrying(rms, frequency, pitch, duration)
         
