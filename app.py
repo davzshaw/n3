@@ -27,7 +27,7 @@ def getTemperature():
 @app.route('/get/cry', methods=['GET'])
 def getCry():
     try:
-        sound = readFiles("sound.txt")
+        sound = readFiles("cry.txt")
         return jsonify({"response": sound}), 200
     except Exception as e:
         return jsonify({f"error": "Error trying to get sound - {e}"}), 500
@@ -64,7 +64,7 @@ def insertTemperature():
 def insertCry():
     try:
         data = request.json.get('data')
-        writeFiles(data, "sound.txt")
+        writeFiles(data, "cry.txt")
         return jsonify({"response": "Cry inserted successfully"}), 200
     except Exception as e:
         return jsonify({f"error": "Error trying to insert cry - {e}"}), 500
