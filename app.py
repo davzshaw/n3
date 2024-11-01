@@ -101,7 +101,7 @@ def predict():
         toReturn = {"response": cry}
         return jsonify(toReturn), 200
     except Exception as e:
-        return jsonify({f"error": "Error trying to delete files - {e}"}), 500
+        return e
 
 
 # Pages
