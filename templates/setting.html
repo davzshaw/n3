@@ -9,21 +9,20 @@
     <h1>Ajustes</h1>
     <div>
         <p>Configura los sonidos del bebé:</p>
-        <!-- Botones para enviar datos al endpoint -->
         <form action="/insert/setting" method="post">
-            <input type="hidden" name="data" value="sound1">
+            <input type="hidden" name="data" value='{"data":"sound1"}'>
             <button type="submit">Baby Cry 1</button>
         </form>
         <form action="/insert/setting" method="post">
-            <input type="hidden" name="data" value="sound2">
+            <input type="hidden" name="data" value='{"data":"sound2"}'>
             <button type="submit">Baby Cry 2</button>
         </form>
         <form action="/insert/setting" method="post">
-            <input type="hidden" name="data" value="sound3">
+            <input type="hidden" name="data" value='{"data":"sound3"}'>
             <button type="submit">Baby Cry 3</button>
         </form>
         <form action="/insert/setting" method="post">
-            <input type="hidden" name="data" value="nosound1">
+            <input type="hidden" name="data" value='{"data":"nosound1"}'>
             <button type="submit">No Sound 1</button>
         </form>
     </div>
