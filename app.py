@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template, request
 import requests
 from datetime import datetime
+from soundmanager import isCrying, processAudioFiles
 from utils import *
 
 app = Flask(__name__)
@@ -83,6 +84,21 @@ def clear():
     try:
         deleteFiles()
         return jsonify({"response": "Files deleted successfully"}), 200
+    except Exception as e:
+        return jsonify({f"error": "Error trying to delete files - {e}"}), 500
+    
+@app.route('/predict', methods=['POST'])
+def predict():
+    try:
+        data = request.json.get('data')
+        sounds = [data]
+        rms, frequency, pitch, duration = processAudioFiles(sounds)
+        cry = isCrying(rms, frequency, pitch, duration)
+        if cry:
+            writeFiles("yes", "cry.txt")
+        else:
+            writeFiles("no", "cry.txt")
+        return jsonify({"response": "Baby cry proc."}), 200
     except Exception as e:
         return jsonify({f"error": "Error trying to delete files - {e}"}), 500
 
