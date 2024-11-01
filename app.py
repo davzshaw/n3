@@ -77,7 +77,7 @@ def insertSetting():
         writeFiles(data, "setting.txt")
         return jsonify({"response": "Setting inserted successfully"}), 200
     except Exception as e:
-        return jsonify({f"error": "Error trying to insert setting - {e}"}), 500
+        return e
     
 @app.route('/clear', methods=['POST'])
 def clear():
