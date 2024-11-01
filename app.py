@@ -118,18 +118,31 @@ def predict():
 @app.route('/send', methods=['POST'])
 def sendAlert():
     try:
-        cry = readFiles("cry.txt")
-        temp = readFiles("temp.txt")
-        crybool = cry == "yes"
+        cry = readFiles("cry.txt").strip().lower()
+        temp = readFiles("temp.txt").strip()
         
+        try:
+            temp = float(temp)
+        except ValueError:
+            return jsonify({"error": "Invalid temperature value read from temp.txt"}), 400
+        
+        crybool = (cry == "yes")
+
         tempCheck = temp <= 10 or temp >= 35
-        cryCheck = crybool
         
-        if cryCheck and tempCheck:
-            sendEmail(crybool, temp)
-        return jsonify({"response": "Mail sent successfully"}), 200
+        if crybool and tempCheck:
+            try:
+                sendEmail(crybool, temp)
+            except Exception as e:
+                return jsonify({"error": f"Failed to send email - {str(e)}"}), 500
+            
+            return jsonify({"response": "Mail sent successfully"}), 200
+        else:
+            return jsonify({"response": "Conditions not met, email not sent"}), 200
+
     except Exception as e:
         return jsonify({"error": f"Error trying to send alert - {str(e)}"}), 500
+
 
 # Pages
 @app.route('/')
@@ -147,9 +160,6 @@ def index():
         
         if cry_data.strip() == "deleted":
             cry_data = "unknown"
-            
-        if temp_data > "28" or temp_data < "15":
-            sendEmail(True, temp_data)
 
         return render_template('index.html', datetime=datetime_data, temperature=temp_data, cry=cry_data)
     except Exception as e:
