@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicativo Flask con Datos de APIs Externas</title>
+    <title>Wannacry - Home</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -71,9 +71,15 @@
         <p><strong>Last Update:</strong> {{ datetime }}</p>
         <p><strong>Temperature:</strong> {{ temperature }} °C</p>
         <p><strong>Crying:</strong> {{ cry }}</p>
-        <form method="get">
-            <button type="submit">Actualizar Datos</button>
+        <form method="get" id="updateForm">
+            <button type="submit" id="updateButton">Actualizar</button>
         </form>
     </div>
+
+    <script>
+        setInterval(() => {
+            document.getElementById('updateButton').click();
+        }, 10000); // 10000 ms = 10s
+    </script>
 </body>
 </html>
