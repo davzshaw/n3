@@ -6,35 +6,74 @@
     <title>Aplicativo Flask con Datos de APIs Externas</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
             text-align: center;
-            margin: 20px;
         }
 
         h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #2c3e50;
         }
 
         p {
             font-size: 1.2em;
+            margin: 10px 0;
+            line-height: 1.6;
         }
 
         button {
-            font-size: 20px;
-            padding: 15px;
-            margin-top: 20px;
+            font-size: 1.2em;
+            padding: 15px 30px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.2);
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        strong {
+            color: #34495e;
         }
     </style>
 </head>
 <body>
-    <h1>Wannacry</h1>
-    <p><strong>Last Update:</strong> {{ datetime }}</p>
-    <p><strong>Temperature:</strong> {{ temperature }} °C</p>
-    <p><strong>Crying:</strong> {{ cry }}</p>
-    <form method="get">
-        <button type="submit">Actualizar Datos</button>
-    </form>
+    <div class="container">
+        <h1>Wannacry</h1>
+        <p><strong>Last Update:</strong> {{ datetime }}</p>
+        <p><strong>Temperature:</strong> {{ temperature }} °C</p>
+        <p><strong>Crying:</strong> {{ cry }}</p>
+        <form method="get">
+            <button type="submit">Actualizar Datos</button>
+        </form>
+    </div>
 </body>
 </html>
