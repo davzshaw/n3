@@ -72,13 +72,34 @@
         <p><strong>Temperature:</strong> {{ temperature }} °C</p>
         <p><strong>Crying:</strong> {{ cry }}</p>
         <form method="get" id="updateForm">
-            <button type="submit" id="updateButton">Actualizar</button>
+            <button type="submit" id="updateButton">Update</button>
         </form>
+        <audio id="audioPlayer" controls>
+            Your browser cannot replay audio.
+        </audio>
     </div>
 
     <script>
+        async function loadAudioBase64() {
+            try {
+                const response = await fetch('./storage/sound.txt');
+                if (!response.ok) {
+                    throw new Error('Cannot load sound');
+                }
+                const audioBase64 = await response.text();
+                const audioElement = document.getElementById('audioPlayer');
+                audioElement.src = `data:audio/wav;base64,${audioBase64}`;
+            } catch (error) {
+                console.error('Error loading sound:', error);
+            }
+        }
+
+        loadAudioBase64();
+
         setInterval(() => {
             document.getElementById('updateButton').click();
+            const audioElement = document.getElementById('audioPlayer');
+            audioElement.play().catch(err => console.log('Error al reproducir el audio:', err));
         }, 10000); // 10000 ms = 10s
     </script>
 </body>
