@@ -54,7 +54,7 @@ def fileToBase64(filenameOrigin="sound.wav", filenameOutput="sound.txt"):
         
         with open(os.path.join(path, filenameOutput), "w") as file:
             file.write(base64String)
-        return "200"
+        return base64String
     except:
         return "500"
 
@@ -73,13 +73,14 @@ def deleteFiles(extension=".txt"):
     except:
         return "500"
                 
-def readFiles(filename = "datetime.txt"):
+def readFiles(filename = "datetime.txt", binary = False):
     try:
-        with open(path+filename, "r") as file:
+        readingType = "r" if not binary else "rb"
+        with open(path+filename, readingType) as file:
             return file.read()
         return "200"
-    except:
-        return "500"
+    except Exception as e:
+        return f"500: {str(e)}"
 
 def writeFiles(content, filenameOutput):
     try:
@@ -88,5 +89,3 @@ def writeFiles(content, filenameOutput):
         return "200"
     except:
         return "500"
-        
-

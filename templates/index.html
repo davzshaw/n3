@@ -82,7 +82,8 @@
     <script>
         async function loadAudioBase64() {
             try {
-                const response = await fetch('./storage/sound.txt');
+                // Modifica la URL para apuntar al endpoint que sirve sound.txt
+                const response = await fetch('/storage/sound.txt');
                 if (!response.ok) {
                     throw new Error('Cannot load sound');
                 }

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, send_from_directory
 import requests
 from datetime import datetime, timedelta
 from soundmanager import isCrying, processAudioFiles
@@ -104,6 +104,8 @@ def predict():
         
         data = request.json.get('data')
         sounds = ["storage/"+data]
+        base64String = fileToBase64(data)
+        print(base64String[:100])
         rms, frequency, pitch, duration = processAudioFiles(sounds)
         cry = isCrying(rms, frequency, pitch, duration)
         
@@ -164,6 +166,10 @@ def index():
         return render_template('index.html', datetime=datetime_data, temperature=temp_data, cry=cry_data)
     except Exception as e:
         return f"Error loading page: {str(e)}"
+    
+@app.route('/storage/<path:filename>')
+def serve_storage(filename):
+    return send_from_directory('storage', filename)
 
 @app.route('/setting')
 def setting():
