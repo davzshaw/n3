@@ -9,13 +9,13 @@ from dotenv import load_dotenv
 
 path = "storage/"
 
-def sendAlert(toEmail, isCrying, temperature, soundFile):
+def sendAlert(toEmail, isCrying, temperature, soundBase64):
     load_dotenv()
     fromEmail = os.environ.get("EMAIL")
     password = os.environ.get("EMAIL_PASSWORD")
 
     subject = "Emergency: Check on Your Baby"
-    body = f"We have detected that your baby is {'crying' if isCrying else 'not crying'} and has a temperature of {temperature:.1f} celcius degrees. Please check on them!"
+    body = f"We have detected that your baby is {'crying' if isCrying else 'not crying'} and has a temperature of {temperature:.1f} Celsius degrees. Please check on them!"
 
     message = MIMEMultipart()
     message['From'] = fromEmail
@@ -23,11 +23,15 @@ def sendAlert(toEmail, isCrying, temperature, soundFile):
     message['Subject'] = subject
     message.attach(MIMEText(body, 'plain'))
 
-    if soundFile:
-        with open(soundFile, 'rb') as f:
-            audio = MIMEAudio(f.read())
-            audio.add_header('Content-Disposition', 'attachment', filename=os.path.basename(soundFile))
+    if soundBase64:
+        try:
+            soundData = base64.b64decode(soundBase64)
+            audio = MIMEAudio(soundData)
+            audio.add_header('Content-Disposition', 'attachment', filename='alert_sound.wav')
             message.attach(audio)
+        except base64.binascii.Error as e:
+            print(f"Error decoding base64 audio: {e}")
+            return
 
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
@@ -36,9 +40,10 @@ def sendAlert(toEmail, isCrying, temperature, soundFile):
 
         server.sendmail(fromEmail, toEmail, message.as_string())
         server.quit()
-        return ("Email sent successfully.")
+        print("Email sent successfully.")
     except Exception as e:
-        return (f"Error sending email: {e}")
+        print(f"Error sending email: {e}")
+
 
 def sendEmail(crying=True, temperature=30):
     try:
