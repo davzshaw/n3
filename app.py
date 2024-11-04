@@ -118,7 +118,7 @@ def predict():
         return jsonify({"error": f"Error trying to process prediction - {str(e)}"}), 500
 
 @app.route('/send', methods=['POST'])
-def sendAlert():
+def sendAlertEndpoint():
     try:
         cry = readFiles("cry.txt").strip().lower()
         temp = readFiles("temp.txt").strip()
@@ -132,9 +132,11 @@ def sendAlert():
 
         tempCheck = temp <= 10 or temp >= 35
         
-        if crybool and tempCheck:
+        if tempCheck:
             try:
-                sendEmail(crybool, temp)
+                data = request.json.get('data')
+                soundString = fileToBase64(data)
+                sendAlert("juandis0246@gmail.com", crybool, temp, soundString)
             except Exception as e:
                 return jsonify({"error": f"Failed to send email - {str(e)}"}), 500
             
