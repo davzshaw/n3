@@ -136,6 +136,7 @@ def sendAlertEndpoint():
             try:
                 data = request.json.get('data')
                 soundString = fileToBase64(data)
+                print(f"Base64 sound: {soundString[:15]}")
                 sendAlert("juandis0246@gmail.com", crybool, temp, soundString)
             except Exception as e:
                 return jsonify({"error": f"Failed to send email - {str(e)}"}), 500
@@ -168,6 +169,14 @@ def index():
         return render_template('index.html', datetime=datetime_data, temperature=temp_data, cry=cry_data)
     except Exception as e:
         return f"Error loading page: {str(e)}"
+    
+@app.route('/news')
+def news():
+    return render_template('news.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
     
 @app.route('/storage/<path:filename>')
 def serve_storage(filename):

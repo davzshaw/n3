@@ -7,14 +7,39 @@
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f3f4f6;
+            background: linear-gradient(to bottom right, #e0f7fa, #f3f4f6);
             color: #333;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            background-color: #3498db;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e0f7fa;
         }
 
         .container {
@@ -22,9 +47,10 @@
             border-radius: 15px;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             padding: 30px;
-            max-width: 600px;
-            width: 100%;
+            max-width: 400px;
+            width: 75%;
             text-align: center;
+            margin-top: 20px;
         }
 
         h1 {
@@ -60,12 +86,28 @@
             transform: translateY(1px);
         }
 
+        audio {
+            width: 55%;
+            margin-top: 15px;
+            border-radius: 8px;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.1);
+        }
+
         strong {
             color: #34495e;
         }
     </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/news">News</a>
+            <a href="/about">About Us</a>
+        </nav>
+    </header>
+
     <div class="container">
         <h1>Wannacry</h1>
         <p><strong>Last Update:</strong> {{ datetime }}</p>
@@ -82,7 +124,6 @@
     <script>
         async function loadAudioBase64() {
             try {
-                // Modifica la URL para apuntar al endpoint que sirve sound.txt
                 const response = await fetch('/storage/sound.txt');
                 if (!response.ok) {
                     throw new Error('Cannot load sound');
@@ -100,8 +141,8 @@
         setInterval(() => {
             document.getElementById('updateButton').click();
             const audioElement = document.getElementById('audioPlayer');
-            audioElement.play().catch(err => console.log('Error al reproducir el audio:', err));
-        }, 10000); // 10000 ms = 10s
+            audioElement.play().catch(err => console.log('Error playing audio:', err));
+        }, 10000 * 6); // 10000 ms * n= 10s * n
     </script>
 </body>
 </html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Wannacry</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #f0f8ff, #e6e6fa);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        header {
+            width: 100%;
+            background-color: #3498db;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e0f7fa;
+        }
+
+        h1 {
+            color: #333;
+            margin: 90px 0 30px;
+            font-size: 2.5em;
+        }
+
+        .about-content {
+            max-width: 600px;
+            margin: 20px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .about-content p {
+            margin: 0 0 15px;
+            font-size: 1.1em;
+            color: #555;
+            text-align: center;
+        }
+
+        .button {
+            background-color: #007bff; /* Blue color */
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 20px 0;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0056b3; /* Darker blue */
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/news">News</a>
+            <a href="/about">About</a>
+        </nav>
+    </header>
+    
+    <h1>About Us</h1>
+    
+    <div class="about-content">
+        <p>We are David Torres and Jonathan García, two passionate software engineering students dedicated to making a difference. Despite our diverse hobbies and interests, we share a common goal: to protect the lives of infants with our project, Wannacry.</p>
+        
+        <p>Our journey has been fueled by countless hours of hard work and collaboration. We believe that every child deserves a safe and secure environment, and with Wannacry, we aim to contribute to that vision.</p>
+        
+        <p>Together, we are committed to creating a tool that not only raises awareness but also provides practical solutions to ensure the well-being of babies everywhere.</p>
+        
+        <p>Thank you for joining us on this mission. Together, we can create a brighter and safer future for our children.</p>
+    </div>
+    
+    <a href="/" class="button">Back Home</a>
+    
+    <div class="footer">
+        &copy; 2024 | Wannacry | David Torres | Jonathan García
+    </div>
+</body>
+</html>

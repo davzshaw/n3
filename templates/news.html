@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Landing Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #f0f8ff, #e6e6fa);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        header {
+            width: 100%;
+            background-color: #3498db;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e0f7fa;
+        }
+
+        h1 {
+            color: #333;
+            margin: 90px 0 30px; /* Adds space to account for the fixed header */
+            font-size: 2.5em;
+        }
+
+        .button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .news-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/news">News</a>
+            <a href="/about">About Us</a>
+        </nav>
+    </header>
+    <h1>Wannacry News</h1>
+    <a href="/" class="button">Back Home</a>
+    <div class="news-buttons">
+        <a href="https://www.elnuevodia.com.co/nuevodia/mundo/491225-nino-de-tres-anos-muere-por-el-calor-dentro-de-un-auto-lo-dejaron-olvidado-y-encerrado" class="button">New No. 1</a>
+        <a href="https://www.eltiempo.com/mundo/latinoamerica/nino-de-tres-anos-muere-tras-ser-olvidado-en-un-auto-por-sus-padres-3326416" class="button">New No. 2</a>
+        <a href="https://www.antena3.com/noticias/mundo/muere-hipotermia-bebe-pasar-5-horas-olvidada-interior-coche_2023072064b9846d1f11910001fcbdc2.html" class="button">New No. 3</a>
+        <a href="https://www.20minutos.es/noticia/5171964/0/muere-una-bebe-portugal-tras-horas-olvidada-coche-su-padre/" class="button">New No. 4</a>
+        <a href="https://www.elcolombiano.com/colombia/muerte-bebe-interior-carro-barranquilla-AL24490415" class="button">New No. 5</a>
+        <a href="https://www.milenio.com/internacional/eu-bebe-ano-murio-abandonado-9-auto" class="button">New No. 6</a>
+    </div>
+    <div class="footer">
+        &copy; 2024 | Wannacry | David Torres | Jonathan García
+    </div>
+</body>
+</html>
